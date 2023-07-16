@@ -113,6 +113,12 @@ return packer.startup(function(user)
 	-- jsx comment
 	use("JoosepAlviste/nvim-ts-context-commentstring")
 
+	-- debugger protocol
+	use("mfussenegger/nvim-dap")
+
+	-- debugger for go
+	use("dreamsofcode-io/nvim-dap-go")
+
 	if packer_bootstrap then
 		require("packer").sync()
 	end

@@ -47,6 +47,8 @@ end
 -- used to enable autocompletion (assign to every lsp server config)
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
+local util = require("lspconfig/util")
+
 -- Change the Diagnostic symbols in the sign column (gutter)
 -- (not in youtube nvim video)
 local signs = { Error = " ", Warn = " ", Hint = "ﴞ ", Info = " " }
@@ -109,8 +111,26 @@ lspconfig["lua_ls"].setup({
 	},
 })
 
--- configure tailwindcss server
+-- configure prisma
 lspconfig["prismals"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
+})
+
+-- configure golang lsp server
+lspconfig["gopls"].setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	cmd = { "gopls" },
+	filetypes = { "go", "gomod", "gowork", "gotmpl" },
+	root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+	settings = {
+		gopls = {
+			completeUnimported = true,
+			usePlaceholders = true,
+			analyses = {
+				unusedparams = true,
+			},
+		},
+	},
 })
