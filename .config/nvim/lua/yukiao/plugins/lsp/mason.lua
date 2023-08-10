@@ -25,6 +25,8 @@ mason_lspconfig.setup({
 		"emmet_ls",
 		"prismals",
 		"gopls",
+		"dockerls",
+		"docker_compose_language_service",
 	},
 })
 
